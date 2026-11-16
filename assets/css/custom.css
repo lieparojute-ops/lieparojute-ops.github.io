@@ -226,7 +226,7 @@ a:hover {
       - Įgūdžių progreso juostos
 ========================================================= */
 
-/* 5.1. Navigacijos meniu – kompiuterių ekranams */
+/* 5.1. Navigacijos meniu */
 
 @media (min-width: 1200px) {
 
@@ -246,7 +246,7 @@ a:hover {
     }
 
     .header .navmenu ul {
-        width: 155px;
+        width: 190px;
     }
 
     /* Įprasta apvali navigacijos mygtuko būsena */
@@ -302,9 +302,9 @@ a:hover {
 
     .header .navmenu a:hover,
     .header .navmenu a:focus-visible {
-        width: 155px;
-        min-width: 155px;
-        max-width: 155px;
+        width: 190px;
+        min-width: 190px;
+        max-width: 190px;
         padding: 0 17px;
         overflow: visible;
         position: relative;
@@ -338,31 +338,6 @@ a:hover {
     }
 }
 
-/* 5.1. Navigacijos meniu – mobiliesiems įrenginiams */
-
-@media (max-width: 1199px) {
-    .header {
-        width: 300px;
-        min-width: 0;
-        padding: 0 15px;
-        background-color: #FFFFFF;
-    }
-
-    .header .navmenu a,
-    .header .navmenu a:focus {
-        width: 100%;
-        max-width: none;
-        height: 56px;
-        overflow: visible;
-    }
-
-    .header .navmenu a span,
-    .header .navmenu a:focus span {
-        display: inline;
-        opacity: 1;
-        visibility: visible;
-    }
-}
 
 /* 5.2. Įgūdžių progreso juostos */
 
@@ -509,3 +484,312 @@ a:hover {
 #services table tbody tr:hover > * {
     background-color: #E2EAF0;
 }
+
+
+/* =========================================================
+   10 LD – KOMPETENCIJŲ PAŽANGOS MODULIS
+========================================================= */
+
+/* Pagrindinė modulio informacija */
+
+.competency-summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #FFFFFF;
+    border: 1px solid #E5E9ED;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(30, 40, 50, 0.08);
+}
+
+.summary-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 12px 18px;
+    background-color: #F0F3F5;
+    border-radius: 8px;
+}
+
+.summary-item span {
+    font-size: 14px;
+    color: #555555;
+}
+
+.summary-item strong {
+    font-size: 21px;
+    color: #303840;
+}
+
+/* Patirties taškų progreso juosta */
+
+.xp-progress {
+    padding: 10px 20px 20px;
+    background-color: #FFFFFF;
+}
+
+.xp-progress-heading {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #303840;
+}
+
+.xp-progress-bar {
+    width: 100%;
+    height: 12px;
+    background-color: #E5E9ED;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.xp-progress-fill {
+    width: 60%;
+    height: 100%;
+    background-color: #54758C;
+    border-radius: 10px;
+}
+
+/* Įgūdžių statistika */
+
+.competency-stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 18px;
+    margin-bottom: 25px;
+    background-color: #FFFFFF;
+    border-top: 1px solid #E5E9ED;
+    border-bottom: 1px solid #E5E9ED;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #555555;
+    font-size: 14px;
+}
+
+.stat-item i {
+    color: #54758C;
+    font-size: 18px;
+}
+
+.stat-item strong {
+    color: #303840;
+}
+
+/* Įgūdžių lentos išdėstymas */
+
+.skill-board {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.skill-column {
+    min-width: 0;
+    padding: 15px;
+    background-color: #FFFFFF;
+    border: 1px solid #E5E9ED;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(30, 40, 50, 0.08);
+}
+
+.skill-column h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    border-bottom: 3px solid;
+}
+
+/* Kategorijų spalvos */
+
+.planned h3 {
+    color: #A77B24;
+    border-color: #E9C879;
+}
+
+.learning h3 {
+    color: #3F7198;
+    border-color: #8DB9DB;
+}
+
+.completed h3 {
+    color: #378567;
+    border-color: #8BCBAA;
+}
+
+/* Įgūdžių kortelės */
+
+.skill-card {
+    padding: 13px;
+    margin-bottom: 12px;
+    background-color: #FAFBFC;
+    border: 1px solid #E5E9ED;
+    border-radius: 8px;
+    box-shadow: 0 2px 7px rgba(30, 40, 50, 0.05);
+}
+
+.skill-card h4 {
+    margin-bottom: 12px;
+    font-size: 15px;
+    color: #303840;
+}
+
+.skill-card-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    font-size: 12px;
+}
+
+.skill-card-info span {
+    padding: 4px 7px;
+    border-radius: 5px;
+}
+
+.planned .skill-card-info span {
+    background-color: #F8EBCB;
+    color: #89651C;
+}
+
+.learning .skill-card-info span {
+    background-color: #DCEBF6;
+    color: #315F83;
+}
+
+.completed .skill-card-info span {
+    background-color: #DDF1E6;
+    color: #327655;
+}
+
+.skill-card-info strong {
+    color: #555555;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   PAPILDOMA UŽDUOTIS – ANIMUOTAS GRADIENTINIS FONAS
+========================================================= */
+
+#services {
+    background: linear-gradient(
+        120deg,
+        #EEF3F6,
+        #FFFFFF,
+        #E1EAF0,
+        #F5F7F9
+    );
+    background-size: 300% 300%;
+    animation: services-gradient 12s ease infinite;
+}
+
+@keyframes services-gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+/* =========================================================
+   PAPILDOMA UŽDUOTIS – ANIMUOTOS CSS FIGŪROS
+========================================================= */
+
+#about {
+    position: relative;
+}
+
+.about-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#about > .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Apskritimas */
+
+.about-circle {
+    position: absolute;
+    top: 12%;
+    right: 8%;
+    width: 45px;
+    height: 45px;
+    background-color: rgba(84, 117, 140, 0.2);
+    border-radius: 50%;
+    animation: circle-floating 5s ease-in-out infinite;
+}
+
+/* Trikampis */
+
+.about-triangle {
+    position: absolute;
+    top: 12%;
+    left: 8%;
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 45px solid rgba(84, 117, 140, 0.2);
+    animation: triangle-rotating 7s linear infinite;
+}
+
+/* Apskritimo judėjimas */
+
+@keyframes circle-floating {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-25px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+/* Trikampio sukimas */
+
+@keyframes triangle-rotating {
+
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+
+}
+
