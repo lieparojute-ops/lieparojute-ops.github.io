@@ -356,7 +356,7 @@ a:hover {
 
 .skills .progress-bar {
     height: 12px;
-    background-color: #54758C;
+    background: linear-gradient(90deg, #54758C 0%, #7899AE 55%, #A9C2D1 100%);
     border-radius: 10px;
     transition: width 0.9s ease;
 }
