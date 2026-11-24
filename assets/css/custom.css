@@ -793,3 +793,107 @@ a:hover {
 
 }
 
+/* =========================================================
+   LD11 – KONTAKTŲ FORMOS SLANKIKLIAI
+========================================================= */
+
+/* Vertinimo laukų išdėstymas */
+
+.custom-contact-form .rating-field {
+    min-width: 0;
+}
+
+.custom-contact-form .rating-field label {
+    display: block;
+    min-height: 42px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Slankiklio bendras stilius */
+
+.custom-contact-form .form-range {
+    min-width: 0;
+    margin-bottom: 0;
+    cursor: pointer;
+    accent-color: #54758C;
+}
+
+/* Slankiklio linija – Chrome, Edge */
+
+.custom-contact-form .form-range::-webkit-slider-runnable-track {
+    height: 6px;
+    background-color: #E5E9ED;
+    border-radius: 10px;
+}
+
+/* Slankiklio apskritimas – Chrome, Edge */
+
+.custom-contact-form .form-range::-webkit-slider-thumb {
+    width: 16px;
+    height: 16px;
+    margin-top: -5px;
+    background-color: #54758C;
+    border: none;
+    box-shadow: none;
+}
+
+/* Slankiklio linija – Firefox */
+
+.custom-contact-form .form-range::-moz-range-track {
+    height: 6px;
+    background-color: #E5E9ED;
+    border-radius: 10px;
+}
+
+/* Slankiklio apskritimas – Firefox */
+
+.custom-contact-form .form-range::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background-color: #54758C;
+    border: none;
+    border-radius: 50%;
+}
+
+/* Pasirinkta vertinimo reikšmė */
+
+.custom-contact-form output {
+    min-width: 24px;
+    text-align: center;
+    font-weight: 600;
+    color: #54758C;
+}
+
+/* Apsauga nuo formos elementų išsiplėtimo */
+
+#contact .custom-contact-form,
+#contact .custom-contact-form .row {
+    min-width: 0;
+    max-width: 100%;
+}
+
+
+/* Formos validacijos klaidų stiliai */
+
+.custom-contact-form .field-error {
+    display: block;
+    min-height: 20px;
+    margin-top: 4px;
+    color: #dc3545;
+    font-size: 13px;
+}
+
+.custom-contact-form .form-control.is-invalid {
+    border-color: #dc3545;
+}
+
+.custom-contact-form .form-control.is-invalid:focus {
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.12);
+}
+
+.custom-contact-form .form-range.is-invalid {
+    outline: 1px solid #dc3545;
+    outline-offset: 3px;
+    border-radius: 5px;
+}

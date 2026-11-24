@@ -696,35 +696,143 @@
           </div>
 
           <div class="col-lg-8">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+            
+            <form class="php-email-form custom-contact-form"
+                  id="contact-form"
+                  novalidate
+                  data-aos="fade-up"
+                  data-aos-delay="200">
+
               <div class="row gy-4">
 
+                <!-- Vardas -->
                 <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Jūsų vardas" required="">
+                  <label for="firstName">Vardas</label>
+                  <input type="text" id="firstName" name="firstName"
+                        class="form-control" placeholder="Jūsų vardas"
+                        data-field required>
+                  <small class="field-error" id="firstName-error"></small>
                 </div>
 
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Jūsų el. paštas" required="">
+                <!-- Pavardė -->
+                <div class="col-md-6">
+                  <label for="lastName">Pavardė</label>
+                  <input type="text" id="lastName" name="lastName"
+                        class="form-control" placeholder="Jūsų pavardė"
+                        data-field required>
+                  <small class="field-error" id="lastName-error"></small>
                 </div>
 
+                <!-- El. paštas -->
+                <div class="col-md-6">
+                  <label for="email">El. paštas</label>
+                  <input type="email" id="email" name="email"
+                        class="form-control" placeholder="Jūsų el. paštas"
+                        data-field required>
+                  <small class="field-error" id="email-error"></small>
+                </div>
+
+                <!-- Telefono numeris -->
+                <div class="col-md-6">
+                  <label for="phone">Telefono numeris</label>
+                  <input type="tel" id="phone" name="phone"
+                        class="form-control" placeholder="+370 6xx xxxxx"
+                        maxlength="14" inputmode="numeric"
+                        data-field required>
+                  <small class="field-error" id="phone-error"></small>
+                </div>
+
+                <!-- Adresas -->
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Tema" required="">
+                  <label for="address">Adresas</label>
+                  <input type="text" id="address" name="address"
+                        class="form-control" placeholder="Jūsų adresas"
+                        data-field required>
+                  <small class="field-error" id="address-error"></small>
                 </div>
 
+                <!-- Žinutė -->
                 <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Žinutė" required=""></textarea>
+                  <label for="message">Žinutė</label>
+                  <textarea id="message" name="message"
+                            class="form-control" rows="4"
+                            placeholder="Parašykite savo žinutę..."></textarea>
                 </div>
 
+                <!-- Vertinimo klausimai -->
+
+                <div class="col-md-4 rating-field">
+                  <label for="rating1">
+                    Kaip vertinate svetainės dizainą? (1–10)
+                  </label>
+
+                  <div class="d-flex align-items-center gap-2">
+                    <input type="range" id="rating1" name="rating1"
+                          class="form-range" min="1" max="10" step="1"
+                          value="5" data-field required>
+
+                    <output id="rating1-value" for="rating1">5</output>
+                  </div>
+
+                  <small class="field-error" id="rating1-error"></small>
+                </div>
+
+                <div class="col-md-4 rating-field">
+                  <label for="rating2">
+                    Kaip vertinate svetainės turinį? (1–10)
+                  </label>
+
+                  <div class="d-flex align-items-center gap-2">
+                    <input type="range" id="rating2" name="rating2"
+                          class="form-range" min="1" max="10" step="1"
+                          value="5" data-field required>
+
+                    <output id="rating2-value" for="rating2">5</output>
+                  </div>
+
+                  <small class="field-error" id="rating2-error"></small>
+                </div>
+
+                <div class="col-md-4 rating-field">
+                  <label for="rating3">
+                    Kaip vertinate svetainės patogumą? (1–10)
+                  </label>
+
+                  <div class="d-flex align-items-center gap-2">
+                    <input type="range" id="rating3" name="rating3"
+                          class="form-range" min="1" max="10" step="1"
+                          value="5" data-field required>
+
+                    <output id="rating3-value" for="rating3">5</output>
+                  </div>
+
+                  <small class="field-error" id="rating3-error"></small>
+                </div>
+
+                <!-- Mygtukai -->
                 <div class="col-md-12 text-center">
-                  <div class="loading">Kraunama...</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Jūsų žinutė sėkmingai išsiųsta. Ačiū!</div>
+                  <button type="submit" id="submit-btn" disabled>
+                    Siųsti
+                  </button>
 
-                  <button type="submit">Išsiųsti žinutę</button>
+                  <button type="button" id="clear-btn">
+                    Išvalyti
+                  </button>
                 </div>
 
               </div>
+
+              <!-- Formos rezultatų atvaizdavimas -->
+              <div id="form-results" class="form-results" hidden>
+                <h3>Įvesti duomenys</h3>
+                <div id="result-details"></div>
+
+                <h4>Įvertinimų vidurkis</h4>
+                <p id="rating-average"></p>
+              </div>
+
             </form>
+
           </div><!-- End Contact Form -->
 
         </div>
@@ -769,7 +877,6 @@
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/typed.js/typed.umd.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
@@ -781,6 +888,9 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <!-- Custom JS File -->
+  <script src="assets/js/custom.js"></script>
 
 </body>
 
