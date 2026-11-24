@@ -1,3 +1,51 @@
+// =========================================================
+// LD12 – KOMPETENCIJŲ PAŽANGOS MODULIS
+// Įgūdžių duomenų masyvas
+// =========================================================
+
+const competencySkills = [
+    {
+        name: "Elektros tinklų analizė",
+        status: "planned",
+        xp: 40
+    },
+    {
+        name: "SolidWorks modeliavimas",
+        status: "planned",
+        xp: 40
+    },
+    {
+        name: "AutoCAD projektavimas",
+        status: "learning",
+        xp: 40
+    },
+    {
+        name: "MATLAB skaičiavimai",
+        status: "learning",
+        xp: 40
+    },
+    {
+        name: "Elektros grandinių analizė",
+        status: "completed",
+        xp: 40
+    },
+    {
+        name: "Techninių brėžinių skaitymas",
+        status: "completed",
+        xp: 40
+    },
+    {
+        name: "KiCad projektavimas",
+        status: "completed",
+        xp: 40
+    },
+    {
+        name: "Python programavimas",
+        status: "completed",
+        xp: 60
+    }
+];
+
 document.addEventListener("DOMContentLoaded", function () {
 
     const form = document.getElementById("contact-form");
@@ -142,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    
+
     // Tikrina laukus įvedant duomenis
     fields.forEach(function (field) {
 
@@ -260,4 +308,257 @@ document.addEventListener("DOMContentLoaded", function () {
         validateForm();
     });
 
+    
+    
+    // =========================================================
+    // LD12 – DINAMINIS ĮGŪDŽIŲ KORTELIŲ GENERAVIMAS
+    // =========================================================
+
+    // Įgūdžių stulpeliai
+    const skillColumns = {
+        planned: document.querySelector(".skill-column.planned"),
+        learning: document.querySelector(".skill-column.learning"),
+        completed: document.querySelector(".skill-column.completed")
+    };
+
+    // Būsenų pavadinimai
+    const statusLabels = {
+        planned: "Planuojama",
+        learning: "Mokomasi",
+        completed: "Atlikta"
+    };
+
+
+    // =========================================================
+    // LD12 – DUOMENŲ SAUGOJIMAS LOCAL STORAGE
+    // =========================================================
+
+    const STORAGE_KEY = "competencySkillsStatus";
+
+
+    // Išsaugo įgūdžių būsenas naršyklės vietinėje saugykloje
+    function saveSkillStatuses() {
+
+        const savedStatuses = competencySkills.map(function (skill) {
+            return {
+                name: skill.name,
+                status: skill.status
+            };
+        });
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(savedStatuses));
+    }
+
+
+    // Įkelia anksčiau išsaugotas įgūdžių būsenas
+    function loadSkillStatuses() {
+
+        const savedData = localStorage.getItem(STORAGE_KEY);
+
+        // Jei išsaugotų duomenų nėra, paliekamos pradinės būsenos
+        if (!savedData) {
+            return;
+        }
+
+        try {
+
+            const savedStatuses = JSON.parse(savedData);
+
+            if (!Array.isArray(savedStatuses)) {
+                return;
+            }
+
+            competencySkills.forEach(function (skill) {
+
+                const savedSkill = savedStatuses.find(function (item) {
+                    return item && item.name === skill.name;
+                });
+
+                // Atkuriama tik galiojanti įgūdžio būsena
+                if (
+                    savedSkill &&
+                    Object.prototype.hasOwnProperty.call(
+                        statusLabels,
+                        savedSkill.status
+                    )
+                ) {
+                    skill.status = savedSkill.status;
+                }
+            });
+
+        } catch (error) {
+            console.error("Nepavyko įkelti įgūdžių būsenų:", error);
+        }
+    }
+
+
+    // 1. Sukuria vieną įgūdžio kortelę
+    function createSkillCard(skill) {
+
+        const card = document.createElement("div");
+        card.className = "skill-card";
+
+        const title = document.createElement("h4");
+        title.textContent = skill.name;
+
+        const info = document.createElement("div");
+        info.className = "skill-card-info";
+
+        const status = document.createElement("span");
+        status.textContent = "Būsena: " + statusLabels[skill.status];
+
+        const xp = document.createElement("strong");
+        xp.textContent = "XP: " + skill.xp;
+
+        // Būsenos pasirinkimas
+        const select = document.createElement("select");
+        select.className = "skill-status-select";
+        select.setAttribute("aria-label", "Keisti įgūdžio būseną");
+
+        Object.entries(statusLabels).forEach(function ([value, label]) {
+
+            const option = document.createElement("option");
+            option.value = value;
+            option.textContent = label;
+
+            if (skill.status === value) {
+                option.selected = true;
+            }
+
+            select.appendChild(option);
+        });
+
+        
+        select.addEventListener("change", function () {
+
+            skill.status = select.value;
+
+            saveSkillStatuses();
+
+            renderSkills();
+            updateXPInfo();
+            updateSkillsStatistics();
+        });
+
+
+        info.append(status, xp);
+        card.append(title, info, select);
+
+        return card;
+    }
+
+
+    // 2. Dinamiškai sugeneruoja visas įgūdžių korteles
+    function renderSkills() {
+
+        // Pašalinamos senos kortelės
+        Object.values(skillColumns).forEach(function (column) {
+
+            column.querySelectorAll(".skill-card").forEach(function (card) {
+                card.remove();
+            });
+        });
+
+        // Kortelės priskiriamos atitinkamiems stulpeliams
+        competencySkills.forEach(function (skill) {
+
+            const card = createSkillCard(skill);
+
+            skillColumns[skill.status].appendChild(card);
+        });
+    }
+
+
+    // 3. Apskaičiuoja XP, lygį, rangą ir progreso juostą
+    function updateXPInfo() {
+
+        // Skaičiuojami tik atliktų įgūdžių XP
+        const totalXP = competencySkills.reduce(function (sum, skill) {
+
+            if (skill.status === "completed") {
+                return sum + skill.xp;
+            }
+
+            return sum;
+        }, 0);
+
+        let level;
+        let rank;
+        let progress;
+
+        // Nustatomas lygis, rangas ir progresas
+        if (totalXP < 50) {
+
+            level = 1;
+            rank = "Pradedantysis";
+            progress = (totalXP / 50) * 100;
+
+        } else if (totalXP < 150) {
+
+            level = 2;
+            rank = "Praktikantas";
+            progress = ((totalXP - 50) / 100) * 100;
+
+        } else if (totalXP < 300) {
+
+            level = 3;
+            rank = "Specialistas";
+            progress = ((totalXP - 150) / 150) * 100;
+
+        } else {
+
+            level = 4;
+            rank = "Profesionalas";
+            progress = 100;
+        }
+
+        // Atnaujinami modulio elementai
+        document.getElementById("total-xp").textContent = totalXP + " XP";
+
+        document.getElementById("current-level").textContent = level;
+
+        document.getElementById("current-rank").textContent = rank;
+
+        document.getElementById("xp-progress-percent").textContent =
+            Math.round(progress) + "%";
+
+        document.getElementById("xp-progress-fill").style.width =
+            progress + "%";
+    }
+
+
+    // 4. Atnaujina įgūdžių statistiką
+    function updateSkillsStatistics() {
+
+        const totalSkills = competencySkills.length;
+
+        const completedSkills = competencySkills.filter(function (skill) {
+            return skill.status === "completed";
+        }).length;
+
+        const completedPercent = totalSkills === 0
+            ? 0
+            : Math.round((completedSkills / totalSkills) * 100);
+
+        document.getElementById("skills-total-count").textContent =
+            totalSkills;
+
+        document.getElementById("skills-completed-count").textContent =
+            completedSkills;
+
+        document.getElementById("skills-completed-percent").textContent =
+            completedPercent + "%";
+    }
+
+
+    // Pradinis modulio duomenų įkėlimas
+    loadSkillStatuses();
+
+    // Pradinis modulio atvaizdavimas ir duomenų apskaičiavimas
+    renderSkills();
+    updateXPInfo();
+    updateSkillsStatistics();
+
+
 });
+

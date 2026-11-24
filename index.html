@@ -219,17 +219,17 @@
 
       <div class="summary-item">
         <span>Bendras XP</span>
-        <strong>180 XP</strong>
+        <strong id="total-xp">180 XP</strong>
       </div>
 
       <div class="summary-item">
         <span>Lygis</span>
-        <strong>3</strong>
+        <strong id="current-level">3</strong>
       </div>
 
       <div class="summary-item">
         <span>Rangas</span>
-        <strong>Specialistas</strong>
+        <strong id="current-rank">Specialistas</strong>
       </div>
 
     </div>
@@ -239,11 +239,11 @@
 
       <div class="xp-progress-heading">
         <span>Progresas iki kito lygio</span>
-        <strong>60%</strong>
+        <strong id="xp-progress-percent">20%</strong>
       </div>
 
       <div class="xp-progress-bar">
-        <div class="xp-progress-fill"></div>
+        <div class="xp-progress-fill" id="xp-progress-fill"></div>
       </div>
 
     </div>
@@ -253,112 +253,42 @@
 
       <div class="stat-item">
         <i class="bi bi-code-slash"></i>
-        <span>Įgūdžiai: <strong>8</strong></span>
+        <span>Įgūdžiai: <strong id="skills-total-count">8</strong></span>
       </div>
 
       <div class="stat-item">
         <i class="bi bi-check-circle"></i>
-        <span>Atlikta: <strong>4</strong></span>
+        <span>Atlikta: <strong id="skills-completed-count">4</strong></span>
       </div>
 
       <div class="stat-item">
         <i class="bi bi-pie-chart"></i>
-        <span>Procentas: <strong>50%</strong></span>
+        <span>Procentas: <strong id="skills-completed-percent">50%</strong></span>
       </div>
 
     </div>
+
 
     <!-- Skill Kanban Board -->
     <div class="skill-board">
 
       <!-- Planned -->
       <div class="skill-column planned">
-
-        <h3><i class="bi bi-calendar-check"></i> Planuojama</h3>
-
-        <div class="skill-card">
-          <h4>Elektros tinklų analizė</h4>
-          <div class="skill-card-info">
-            <span>Būsena: Planuojama</span>
-            <strong>XP: 40</strong>
-          </div>
-        </div>
-
-        <div class="skill-card">
-          <h4>SolidWorks modeliavimas</h4>
-          <div class="skill-card-info">
-            <span>Būsena: Planuojama</span>
-            <strong>XP: 40</strong>
-          </div>
-        </div>
-
+        <h3>Planuojama</h3>
       </div>
 
       <!-- Learning -->
       <div class="skill-column learning">
-
-        <h3><i class="bi bi-book"></i> Mokomasi</h3>
-
-        <div class="skill-card">
-          <h4>AutoCAD projektavimas</h4>
-          <div class="skill-card-info">
-            <span>Būsena: Mokomasi</span>
-            <strong>XP: 40</strong>
-          </div>
-        </div>
-
-        <div class="skill-card">
-          <h4>MATLAB skaičiavimai</h4>
-          <div class="skill-card-info">
-            <span>Būsena: Mokomasi</span>
-            <strong>XP: 40</strong>
-          </div>
-        </div>
-
+        <h3>Mokomasi</h3>
       </div>
 
       <!-- Completed -->
       <div class="skill-column completed">
-
-        <h3><i class="bi bi-check-circle"></i> Atlikta</h3>
-
-        <div class="skill-card">
-          <h4>Elektros grandinių analizė</h4>
-          <div class="skill-card-info">
-            <span>Būsena: Atlikta</span>
-            <strong>XP: 40</strong>
-          </div>
-        </div>
-
-        <div class="skill-card">
-          <h4>Techninių brėžinių skaitymas</h4>
-          <div class="skill-card-info">
-            <span>Būsena: Atlikta</span>
-            <strong>XP: 40</strong>
-          </div>
-        </div>
-
-        <div class="skill-card">
-          <h4>KiCad projektavimas</h4>
-          <div class="skill-card-info">
-            <span>Būsena: Atlikta</span>
-            <strong>XP: 40</strong>
-          </div>
-        </div>
-
-        <div class="skill-card">
-          <h4>Python programavimas</h4>
-          <div class="skill-card-info">
-            <span>Būsena: Atlikta</span>
-            <strong>XP: 60</strong>
-          </div>
-        </div>
-
+        <h3>Atlikta</h3>
       </div>
 
     </div>
 
-  </div>
 
 </section>
 <!-- /Competencies Section -->
